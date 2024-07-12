@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import uniqid from 'uniqid';
+import { jsPDF } from 'jspdf';
+import html2canvas from 'html2canvas';
 
-import Navbar from './components/Navbar';
 import PersonalForm from './components/personal/PersonalForm';
 import PersonalInfo from './components/personal/PersonalInfo';
 import EducationForm from './components/education/EducationForm';
@@ -75,31 +76,59 @@ function App() {
 		});
 	}
 
+	function generate_resume() {
+		html2canvas(document.getElementById("resume")).then((canvas) => {
+			const imgData = canvas.toDataURL('image/png');
+        	const pdf = new jsPDF();
+
+			const imgWidth = 210; 
+			const pageHeight = 295;
+			const imgHeight = (canvas.height * imgWidth) / canvas.width;
+			let heightLeft = imgHeight;
+			let position = 0;
+
+			pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+        	heightLeft -= pageHeight;
+
+			while (heightLeft >= 0) {
+				position = heightLeft - imgHeight;
+				pdf.addPage();
+				pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+				heightLeft -= pageHeight;
+			}
+
+			pdf.save('resume.pdf');
+		});
+	}
+
 	return (
-		<main className="container mx-auto p-4">
-			<div className="edit">
-				<PersonalForm inputs={personalInputs} handlePersonalInputChange={handlePersonalInputChange}/>
-				<EducationForm 
-					inputs={educationInputs} 
-					handleEducationInputChange={handleEducationInputChange} 
-					handleEducationSubmit={handleEducationSubmit} 
-					educations={educations}
-					setEducations={setEducations}
-				/>
-				<ExperienceForm 
-					inputs={experienceInputs} 
-					handleExperienceInputsChange={handleExperienceInputsChange} 
-					handleExperienceSubmit={handleExperienceSubmit}
-					experiences={experiences}
-					setExperiences={setExperiences}
-				/>
-			</div>
-			<div className="resume">
-				<PersonalInfo inputs={personalInputs}/>
-				<EducationInfo educations={educations}/>
-				<ExperienceInfo experiences={experiences}/>
-			</div>
-		</main>
+		<>
+			<button className="p-4 bg-red-500 rounded hover:bg-red-700 text-black" onClick={generate_resume}>Download as PDF</button>
+			<main className="container mx-auto p-4">
+				<div className="edit">
+					<PersonalForm inputs={personalInputs} handlePersonalInputChange={handlePersonalInputChange}/>
+					<EducationForm 
+						inputs={educationInputs} 
+						handleEducationInputChange={handleEducationInputChange} 
+						handleEducationSubmit={handleEducationSubmit} 
+						educations={educations}
+						setEducations={setEducations}
+					/>
+					<ExperienceForm 
+						inputs={experienceInputs} 
+						handleExperienceInputsChange={handleExperienceInputsChange} 
+						handleExperienceSubmit={handleExperienceSubmit}
+						experiences={experiences}
+						setExperiences={setExperiences}
+					/>
+				</div>
+				<div className="resume" id="resume">
+					<PersonalInfo inputs={personalInputs}/>
+					<EducationInfo educations={educations}/>
+					<ExperienceInfo experiences={experiences}/>
+				</div>
+			</main>
+		</>
 	);
 }
 

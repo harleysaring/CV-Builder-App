@@ -6,7 +6,7 @@ function ExperienceInfo({experiences}) {
                 {experiences.map((exp) => {
                     return (
                         <li key={exp.id}>
-                            <h3>{exp.company}</h3>
+                            <h3 className="font-bold">{exp.company}</h3>
                             <div className="float-end">{exp.job_start}-{exp.job_end}</div>
                             <div>{exp.job_title}</div>
                             <p>{exp.job_respo}</p>

@@ -1,0 +1,172 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #ccc;
+    
+}
+
+main {
+    display: flex;
+    justify-content: space-between;
+}
+
+main .edit {
+    width: 35%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+main .edit section {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+}
+
+main .edit section svg {
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+main .edit section h2 {
+    font-size: 24px;
+    display: inline-block;
+}
+
+main .edit section button.accordion {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+main .edit section button svg.arrow {
+    transition: transform 0.3s;
+    transform: rotate(0);
+}
+
+main .edit section button svg.arrow.open {
+    transform: rotate(-180deg);
+}
+
+main .edit section .section-form, .section-content {
+    height: 0;
+    visibility: hidden;
+}
+
+main .edit section .section-form label {
+    font-weight: 500;
+}
+
+main .edit section .section-form .form-buttons {
+    display: flex;
+    justify-content: end;
+}
+
+main .edit section .section-content button.add_btn {
+    width: 100%;
+    margin-top: 30px;
+    padding: 10px 0;
+    text-align: center;
+    color: #4c4c4c;
+    background-color: #F1F1F1;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main .edit section .section-form.open, .section-list.open, .section-content.open {
+    height: auto;
+    visibility: visible;
+}
+
+main .edit section .section-list ul {
+    list-style: none;
+    margin: 10px 0;
+}
+
+main .edit section .section-list ul li {
+    padding: 14px 0;
+    border-top: 1px solid #E5E5E5;
+    border-bottom: 1px solid #E5E5E5;
+    display: flex;
+    justify-content: space-between;
+}
+
+main .edit section .section-form.open, .section-list ul li h3 {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+main .edit section .section-form.open, .section-list ul li svg {
+    cursor: pointer;
+}
+
+main .edit section .section-form button svg {
+    display: inline-block;
+}
+
+main .resume {
+    width: 60%;
+    height: 1000px;
+    background-color: #fff;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+    display: inline-block;
+    vertical-align: top;
+}
+
+main .resume section h2 {
+    margin-bottom: 10px;
+    font-size: 20px;
+    border-bottom: 2px solid #1e5676;
+}
+
+main .resume section h3 {
+    display: inline-block;
+}
+
+main .resume section ul {
+    list-style-type: none;
+}
+
+main .resume section ul li{
+    margin-bottom: 20px;
+}
+
+main .resume section.personal {
+    padding: 30px 0;
+    color: #fff;
+    background-color: #1e5676;
+}
+
+main .resume section.personal h1 {
+    margin-bottom: 10px;
+}
+
+main .resume section.personal span {
+    margin: 0 20px;
+    vertical-align: middle;
+}
+
+main .resume section.personal span svg {
+    width: 16px;
+    height: 16px;
+    margin-right: 2px;
+    display: inline-block;
+}
+
+main .resume section.education {
+    padding: 20px 50px;
+}
+
+main .resume section.experience {
+    padding: 20px 50px;
+}
